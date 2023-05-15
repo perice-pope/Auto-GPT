@@ -43,7 +43,7 @@ def build_default_prompt_generator() -> PromptGenerator:
 
     # Add resources to the PromptGenerator object
     prompt_generator.add_resource(
-        "Internet access for searches and information gathering."
+        "Internet access for search and information gathering."
     )
     prompt_generator.add_resource("Long Term memory management.")
     prompt_generator.add_resource(
