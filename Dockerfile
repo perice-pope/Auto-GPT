@@ -27,6 +27,10 @@ ENTRYPOINT ["python", "-m", "autogpt", "--install-plugin-deps"]
 # dev build -> include everything
 FROM autogpt-base as autogpt-dev
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Download the repository and copy it to the plugins directory
+RUN curl -L -o /tmp/Auto-GPT-Plugins.zip https://github.com/Significant-Gravitas/Auto-GPT-Plugins/archive/refs/heads/master.zip
+
 WORKDIR /app
 ONBUILD COPY . ./
 
@@ -38,5 +42,7 @@ WORKDIR /app
 ONBUILD COPY autogpt/ ./autogpt
 ONBUILD COPY scripts/ ./scripts
 ONBUILD COPY plugins/ ./plugins
-
+ONBUILD RUN curl -L -o ./plugins/Auto-GPT-Plugins.zip https://github.com/Significant-Gravitas/Auto-GPT-Plugins/archive/refs/heads/master.zip
+#ONBUILD RUN run.sh --install-plugin-deps
+# hmm I wonder why there is no plugins folder there
 FROM autogpt-${BUILD_TYPE} AS auto-gpt
