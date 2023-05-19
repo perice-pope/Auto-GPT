@@ -29,7 +29,7 @@ FROM autogpt-base as autogpt-dev
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Download the repository and copy it to the plugins directory
-RUN curl -L -o /tmp/Auto-GPT-Plugins.zip https://github.com/Significant-Gravitas/Auto-GPT-Plugins/archive/refs/heads/master.zip
+RUN curl -L -o /plugins/Auto-GPT-Plugins.zip https://github.com/Significant-Gravitas/Auto-GPT-Plugins/archive/refs/heads/master.zip
 
 WORKDIR /app
 ONBUILD COPY . ./
